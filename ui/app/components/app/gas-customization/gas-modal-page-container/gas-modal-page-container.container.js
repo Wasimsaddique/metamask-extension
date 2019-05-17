@@ -178,7 +178,7 @@ const mapDispatchToProps = dispatch => {
 }
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
-  const { gasPriceButtonGroupProps, isConfirm, txId, isSpeedUp, insufficientBalance, customGasPrice } = stateProps
+  const { gasPriceButtonGroupProps, isConfirm, txId, isSpeedUp, insufficientBalance, customGasPrice, customGasLimit } = stateProps
   const {
     updateCustomGasPrice: dispatchUpdateCustomGasPrice,
     hideGasButtonGroup: dispatchHideGasButtonGroup,
@@ -219,7 +219,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
         dispatchHideSidebar()
       }
     },
-    disableSave: insufficientBalance || (isSpeedUp && customGasPrice === 0),
+    disableSave: insufficientBalance || (isSpeedUp && customGasPrice === 0) || customGasLimit < 21000,
   }
 }
 
